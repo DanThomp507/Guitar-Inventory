@@ -13,6 +13,10 @@ app.get( "/", ( req, res ) => {
     res.render( "index" );
 } );
 
+// using app.use to serve up static CSS files in public/assets/ folder when /public link is called in ejs files
+// app.use("/route", express.static("foldername"));
+app.use("/public", express.static("public"));
+
 app.listen( PORT, () => {
     // tslint:disable-next-line:no-console
     console.log( `server started at http://localhost:${ PORT }` );

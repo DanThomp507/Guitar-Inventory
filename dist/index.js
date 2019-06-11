@@ -5,10 +5,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const PORT = process.env.PORT || 8080;
+const path_1 = __importDefault(require("path"));
 const app = express_1.default();
+// Configure Express to use EJS
+app.set("views", path_1.default.join(__dirname, "views"));
+app.set("view engine", "ejs");
+// define a route handler for the default home page
 app.get("/", (req, res) => {
-    res.send("Hello world");
+    // render the index template
+    res.render("index");
 });
+// using app.use to serve up static CSS files in public/assets/ folder when /public link is called in ejs files
+// app.use("/route", express.static("foldername"));
+app.use("/public", express_1.default.static("public"));
 app.listen(PORT, () => {
     // tslint:disable-next-line:no-console
     console.log(`server started at http://localhost:${PORT}`);
