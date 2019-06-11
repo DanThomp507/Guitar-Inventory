@@ -1,6 +1,13 @@
+import dotenv from "dotenv";
 import express from "express";
-const PORT = process.env.PORT || 8080;
 import path from "path";
+
+// initialize configuration
+dotenv.config();
+
+// port is now available to the Node.js runtime
+// as if it were an environment variable
+const PORT = process.env.SERVER_PORT;
 const app = express();
 
 // Configure Express to use EJS
